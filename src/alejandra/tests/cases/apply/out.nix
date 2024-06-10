@@ -41,19 +41,19 @@
     name1 =
       function
       arg
-      {asdf = 1;};
+      { asdf = 1; };
 
     name2 =
       function
       arg
-      {asdf = 1;}
+      { asdf = 1; }
       argument;
 
     name3 =
       function
       arg
-      {asdf = 1;}
-      {qwer = 12345;}
+      { asdf = 1; }
+      { qwer = 12345; }
       argument;
   }
   {
@@ -79,7 +79,7 @@
     name4 =
       function
       arg
-      {asdf = 1;}
+      { asdf = 1; }
       {
         qwer = 12345;
         qwer2 = 54321;
@@ -88,21 +88,21 @@
   }
   {
     option1 =
-      function arg {asdf = 1;} {
+      function arg { asdf = 1; } {
         qwer = 12345;
         qwer2 = 54321;
       }
       lastArg;
 
     option2 =
-      function arg {asdf = 1;} {
+      function arg { asdf = 1; } {
         qwer = 12345;
         qwer2 = 54321;
       }
       lastArg;
 
     option3 =
-      function arg {asdf = 1;}
+      function arg { asdf = 1; }
       {
         qwer = 12345;
         qwer2 = 54321;

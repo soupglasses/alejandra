@@ -33,7 +33,7 @@ in {
 
     boot.kernelPackages = mkOption {
       default = pkgs.linuxPackages;
-      type = types.unspecified // {merge = mergeEqualOption;};
+      type = types.unspecified // { merge = mergeEqualOption; };
       apply = kernelPackages:
         kernelPackages.extend (self: super: {
           kernel = super.kernel.override (originalArgs: {
@@ -263,7 +263,7 @@ in {
       })
 
       (mkIf (!config.boot.isContainer) {
-        system.build = {inherit kernel;};
+        system.build = { inherit kernel; };
 
         system.modulesTree = [kernel] ++ config.boot.extraModulePackages;
 
