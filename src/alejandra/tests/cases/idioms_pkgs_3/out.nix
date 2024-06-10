@@ -134,7 +134,7 @@ in {
     boot.initrd.availableKernelModules = mkOption {
       type = types.listOf types.str;
       default = [];
-      example = ["sata_nv" "ext3"];
+      example = [ "sata_nv" "ext3" ];
       description = ''
         The set of kernel modules in the initial ramdisk used during the
         boot process.  This set must include all modules necessary for
@@ -265,20 +265,20 @@ in {
       (mkIf (!config.boot.isContainer) {
         system.build = { inherit kernel; };
 
-        system.modulesTree = [kernel] ++ config.boot.extraModulePackages;
+        system.modulesTree = [ kernel ] ++ config.boot.extraModulePackages;
 
         # Implement consoleLogLevel both in early boot and using sysctl
         # (so you don't need to reboot to have changes take effect).
         boot.kernelParams =
-          ["loglevel=${toString config.boot.consoleLogLevel}"]
-          ++ optionals config.boot.vesa ["vga=0x317" "nomodeset"];
+          [ "loglevel=${toString config.boot.consoleLogLevel}" ]
+          ++ optionals config.boot.vesa [ "vga=0x317" "nomodeset" ];
 
         boot.kernel.sysctl."kernel.printk" = mkDefault config.boot.consoleLogLevel;
 
-        boot.kernelModules = ["loop" "atkbd"];
+        boot.kernelModules = [ "loop" "atkbd" ];
 
         # The Linux kernel >= 2.6.27 provides firmware.
-        hardware.firmware = [kernel];
+        hardware.firmware = [ kernel ];
 
         # Create /etc/modules-load.d/nixos.conf, which is read by
         # systemd-modules-load.service to load required kernel modules.
@@ -287,8 +287,8 @@ in {
         };
 
         systemd.services.systemd-modules-load = {
-          wantedBy = ["multi-user.target"];
-          restartTriggers = [kernelModulesConf];
+          wantedBy = [ "multi-user.target" ];
+          restartTriggers = [ kernelModulesConf ];
           serviceConfig = {
             # Ignore failed module loads.  Typically some of the
             # modules in ‘boot.kernelModules’ are "nice to have but

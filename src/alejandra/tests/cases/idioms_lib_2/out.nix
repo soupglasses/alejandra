@@ -387,7 +387,7 @@
   Type: string -> a -> a
   */
   warn =
-    if lib.elem (builtins.getEnv "NIX_ABORT_ON_WARN") ["1" "true" "yes"]
+    if lib.elem (builtins.getEnv "NIX_ABORT_ON_WARN") [ "1" "true" "yes" ]
     then msg: builtins.trace "[1;31mwarning: ${msg}[0m" (abort "NIX_ABORT_ON_WARN=true; warnings are treated as unrecoverable errors.")
     else msg: builtins.trace "[1;31mwarning: ${msg}[0m";
 
@@ -526,12 +526,12 @@
   toBaseDigits = base: i: let
     go = i:
       if i < base
-      then [i]
+      then [ i ]
       else let
         r = i - ((i / base) * base);
         q = (i - r) / base;
       in
-        [r] ++ go q;
+        [ r ] ++ go q;
   in
     assert (base >= 2);
     assert (i >= 0);

@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     url = "example/${version}";
   };
   meta = with lib; {
-    maintainers = with maintainers; [someone];
+    maintainers = with maintainers; [ someone ];
     description = "something";
   };
 }
